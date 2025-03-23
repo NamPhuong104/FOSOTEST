@@ -74,11 +74,6 @@ module.exports = {
         count: 1
       }
     ],
-    'padding-line-between-statements': [
-      'error',
-      { blankLine: 'always', prev: ['export'], next: ['*'] },
-      { blankLine: 'always', prev: ['*'], next: ['multiline-const', 'multiline-let', 'multiline-var', 'export'] }
-    ],
 
     // Accessibility
     'jsx-a11y/anchor-is-valid': [

@@ -1,234 +1,205 @@
-# Introduction
+## Cấu trúc dự án
 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.
+Tuân thủ đúng cấu trúc đã định với các thư mục chính như:
 
-# Getting Started
+- `app/`: Cấu trúc App Router của Next.js cho routing
+- `components/`: Thành phần giao diện
+- `hooks/`: Hook tùy chỉnh
+- `services/`: Service gọi API
+- `stores/`: Quản lý trạng thái
+- `utils/`: Hàm tiện ích
+- `types/`: Định nghĩa kiểu TypeScript
+- `styles/`: CSS và theme
+- `lib/`: Thư viện và tiện ích
+- `config/`: Cấu hình ứng dụng
+- `assets/`: Tài nguyên (hình ảnh, icons)
+- `providers/`: Context provider
+- `context/`: React Context API
 
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
+## Quy tắc phát triển
 
-1. Installation process
-2. Software dependencies
-3. Latest releases
-4. API references
+### 1. Cấu trúc API (`/src/app/api`)
+- Tổ chức theo RESTful API với các endpoint riêng biệt.
+- Sử dụng route handler của Next.js 13+.
+- Hỗ trợ các route động (`[id]`) để xử lý tài nguyên cụ thể.
 
-# Build and Test
+### 2. Providers (`/src/providers`)
+- Chứa các Context Provider cho ứng dụng.
+- Quản lý state global như auth, theme, toast.
+- Redux Provider kết nối Redux với React.
 
-TODO: Describe and show how to build your code and run the tests.
+### 3. Config (`/src/config`)
+- Tập trung các cấu hình ứng dụng.
+- Routes định nghĩa đường dẫn để dễ dàng thay đổi.
+- Constants lưu các hằng số toàn cục.
 
-# Contribute
+### 4. Context (`/src/context`)
+- Định nghĩa các React Context.
+- Tách biệt logic state management khỏi UI.
 
-TODO: Explain how other users and developers can contribute to make your code better.
+### 5. Styles mở rộng (`/src/styles`)
+- Tổ chức CSS theo mục đích sử dụng:
+  - `Variables`: chứa các CSS variables.
+  - `Animations`: chứa các định nghĩa animation.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
+### 6. Types mở rộng (`/src/types`)
+- Cấu trúc đầy đủ cho tất cả model dữ liệu.
+- Định nghĩa interface cho API request/response.
+- Type Redux cho các state, action.
 
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+### 7. Components (`/src/components`)
+- Tách riêng các component có thể tái sử dụng.
+- Mỗi component có logic riêng biệt.
 
-# Project Structure
+### 8. Group Routes (`/src/app/(group)`)
+- Nhóm các route có cùng layout.
+- Tối ưu hiệu suất và UX nhất quán.
 
-project-nextjs15
-├── src # Main source code directory
-│ ├── app # Directory containing routes based on App Router structure
-│ │ ├── (main) # Group of main routes
-│ │ │ ├── layout.tsx # Layout for main
-│ │ │ ├── page.tsx # Homepage
-│ │ ├── api # API routes (Edge/Server Functions)
-│ │ │ └── route.ts # Define API route
-│ │ ├── (auth) # Group of authentication-related routes
-│ │ │ ├── layout.tsx # Layout for auth
-│ │ │ ├── login # Login route
-│ │ │ │ └── page.tsx
-│ │ │ └── register # Register route
-│ │ └── page.tsx
-│ │ └── [dynamic] # Dynamic route
-│ │ ├── layout.tsx # Layout for dynamic routes
-│ │ ├── page.tsx # Main dynamic page
-│ │ ├── [id] # Nested dynamic route
-│ │ │ ├── layout.tsx # Layout for nested dynamic routes
-│ │ │ └── page.tsx # Page for specific ID
-│ │ ├── new # Create new item route
-│ │ │ └── page.tsx # New item creation page
-│ │ ├── edit # Edit item route
-│ │ │ └── page.tsx # Edit item page
-│ │ └── settings # Settings route
-│ └── page.tsx
-│ │
-│ ├── assets # Directory containing assets (for UI and code optimization)
-│ │ ├── images # Images for UI (used in components)
-│ │ └── icons # Icons used in UI
-│ │
-│ ├── components # Shared components
-│ │ ├── ui # Common UI components (button, modal, ...)
-│ │ ├── layout # Layouts (header, footer, sidebar, ...)
-│ │ └── pages # UI components for each page
-│ │ ├── home # UI for Home page
-│ │ ├── login # UI for Login page
-│ │ └── dashboard # UI for Dashboard page
-│ │
-│ ├── hooks # Custom hooks (React Hooks)
-│ │ ├── useAuth.ts
-│ │ ├── useTheme.ts
-│ │ └── useQueryClient.ts # Custom hook for React Query
-│ │
-│ ├── lib # Directory containing utility functions and configurations
-│ │ ├── axiosInstance.ts # Axios configuration
-│ │ ├── auth.ts # Authentication functions
-│ │ └── reactQuery.ts # React Query configuration (QueryClient)
-│ │
-│ ├── middleware.ts # Middleware to check access permissions
-│ │
-│ ├── stores # Redux Toolkit or Zustand for state management
-│ │ ├── store.ts # Main store
-│ │ ├── slices # Slices/modules
-│ │ ├── authSlice.ts
-│ │ └── userSlice.ts
-│ │
-│ ├── styles # Directory containing CSS/SCSS files
-│ │ ├── globals.css # Global CSS
-│ │
-│ └── utils # Utility functions (helper functions)
-│ └── formatDate.ts
-│
-├── public # Directory containing static files (favicon, manifest, ...)
-│ ├── favicon.ico
-│ ├── robots.txt
-│ └── images # Static images, no optimization needed
-│ ├── logo.png # Company logo
-│ └── banner.jpg # Static banner
-│
-├── tests # Directory containing test files (Unit Test, E2E Test)
-│ ├── unit # Unit Tests (Jest, Testing Library)
-│ │ ├── components # Tests for components
-│ │ │ ├── Button.test.tsx
-│ │ │ └── Modal.test.tsx
-│ │ ├── hooks # Tests for custom hooks
-│ │ │ └── useAuth.test.ts
-│ │ ├── lib # Tests for utility functions
-│ │ │ └── formatDate.test.ts
-│ │ └── pages # Tests for page components
-│ │ ├── Home.test.tsx
-│ │ └── Login.test.tsx
-│ └── e2e # End-to-End Tests (Playwright, Cypress)
-│ ├── tests # E2E test cases
-│ │ ├── login.spec.ts # Login flow test
-│ │ ├── register.spec.ts # Registration flow test
-│ │ └── navigation.spec.ts # Navigation flow test
-│ ├── fixtures # Test data and mock responses
-│ │ └── user.json
-│ ├── support # Custom commands and setup
-│ │ └── commands.ts
-│ └── cypress.config.ts # Cypress configuration
-│
-├── .gitignore # Git Ignore configuration file
-├── package.json # Dependencies management file
-├── next.config.js # Next.js configuration
-├── postcss.config.js # PostCSS configuration (if using TailwindCSS)
-├── tailwind.config.js # TailwindCSS configuration
-├── tsconfig.json # TypeScript configuration
-├── README.md # Project description file
-└── react-query-config.ts # Main configuration file for React Query
+### 9. Test Configs
+- Jest cho unit testing.
+- Playwright cho end-to-end testing.
+- Chạy lệnh `npm test` để thực hiện unit test.
+- Đảm bảo đạt ít nhất 80% code coverage.
+
+### 10. Gọi API
+- Sử dụng `axiosInstances` đã được cấu hình sẵn để gọi API backend.
+- Gọi API route của Next.js bằng `fetch`.
+- Với các yêu cầu bảo mật, gọi thông qua API của Next.js bằng các services để tương tác với API backend.
+- Với các yêu cầu ít bảo mật, có thể gọi trực tiếp API backend.
+
+### Khi nào nên gọi API ở client và server
+- **Client**:
+  - Dùng cho các tác vụ tương tác trực tiếp với người dùng (ví dụ: cập nhật dữ liệu theo thời gian thực).
+  - Giảm tải cho server và cải thiện hiệu suất nếu không cần bảo mật cao.
+  
+- **Server**:
+  - Dùng cho các tác vụ cần bảo mật, xử lý dữ liệu quan trọng hoặc kết nối với cơ sở dữ liệu.
+  - Giảm nguy cơ lộ thông tin nhạy cảm trên client.
+
+### Khi nào nên gọi API từ backend vòng qua API route của Next.js
+- Dùng khi cần bảo mật dữ liệu hoặc logic xử lý phức tạp.
+- Dùng để che giấu endpoint backend và xử lý xác thực.
+- Dùng để đồng bộ dữ liệu hoặc thực hiện các tác vụ cron job.
+
+### 11. Sử dụng Assets
+- Lưu trữ hình ảnh tĩnh và icons trong thư mục `assets/`.
+- Ưu tiên tối ưu kích thước và định dạng ảnh (WebP, AVIF).
+- Sử dụng tên tệp có ý nghĩa, viết thường và phân tách bằng dấu gạch ngang.
+
+### 12. Sử dụng Public
+- Các tệp dùng cho SEO hoặc favicon nên đặt trong `public/`.
+- Lưu trữ hình ảnh tĩnh dùng chung, không qua xử lý của Webpack.
+
+### 13. Chạy ESLint
+- Sử dụng ESLint để kiểm tra và định dạng mã nguồn.
+- Chạy lệnh `npm run lint` trước khi commit để đảm bảo mã sạch.
 
 # Cấu Trúc Dự Án
 
-project-nextjs15
-├── src # Thư mục chứa mã nguồn chính
-│ ├── app # Thư mục chứa các route dựa trên cấu trúc App Router
-│ │ ├── (main) # Nhóm các route chính
-│ │ │ ├── layout.tsx # Layout cho main
-│ │ │ ├── page.tsx # Trang chủ
-│ │ ├── api # Các route API (Edge/Server Functions)
-│ │ │ └── route.ts # Định nghĩa route API
-│ │ ├── (auth) # Nhóm các route liên quan đến xác thực
-│ │ │ ├── layout.tsx # Layout cho auth
-│ │ │ ├── login # Route đăng nhập
-│ │ │ │ └── page.tsx
-│ │ │ └── register # Route đăng ký
-│ │ └── page.tsx
-│ │ └── [dynamic] # Route động
-│ │ ├── layout.tsx # Layout cho route động
-│ │ ├── page.tsx # Trang chính của route động
-│ │ ├── [id] # Route động lồng nhau
-│ │ │ ├── layout.tsx # Layout cho route động lồng nhau
-│ │ │ └── page.tsx # Trang cho ID cụ thể
-│ │ ├── new # Route tạo mới
-│ │ │ └── page.tsx # Trang tạo mới
-│ │ ├── edit # Route chỉnh sửa
-│ │ │ └── page.tsx # Trang chỉnh sửa
-│ │ └── settings # Route cài đặt
-│ └── page.tsx
-│ │
-│ ├── assets # Thư mục chứa tài nguyên (tối ưu UI và mã nguồn)
-│ │ ├── images # Hình ảnh cho UI (dùng trong components)
-│ │ └── icons # Biểu tượng dùng trong UI
-│ │
-│ ├── components # Các thành phần dùng chung
-│ │ ├── ui # Thành phần UI chung (button, modal, ...)
-│ │ ├── layout # Layouts (header, footer, sidebar, ...)
-│ │ └── pages # Thành phần UI cho từng page
-│ │ ├── home # UI cho trang chủ
-│ │ ├── login # UI cho trang đăng nhập
-│ │ └── dashboard # UI cho trang dashboard
-│ │
-│ ├── hooks # Custom hooks (React Hooks)
-│ │ ├── useAuth.ts
-│ │ ├── useTheme.ts
-│ │ └── useQueryClient.ts # Custom hook cho React Query
-│ │
-│ ├── lib # Thư mục chứa hàm tiện ích và cấu hình
-│ │ ├── axiosInstance.ts # Cấu hình Axios
-│ │ ├── auth.ts # Hàm xử lý xác thực
-│ │ └── reactQuery.ts # Cấu hình React Query (QueryClient)
-│ │
-│ ├── middleware.ts # Middleware kiểm tra quyền truy cập
-│ │
-│ ├── stores # Redux Toolkit hoặc Zustand cho quản lý trạng thái
-│ │ ├── store.ts # Store chính
-│ │ ├── slices # Các module slice
-│ │ ├── authSlice.ts
-│ │ └── userSlice.ts
-│ │
-│ ├── styles # Thư mục chứa file CSS/SCSS
-│ │ ├── globals.css # Global CSS
-│ │
-│ └── utils # Hàm tiện ích (helper functions)
-│ └── formatDate.ts
+├── src/                                   # Thư mục mã nguồn chính
+│   ├── app/                               # Cấu trúc App Router
+│   │   ├── (main)/                        # Nhóm route chính
+│   │   │   ├── layout.tsx                 # Layout chính
+│   │   │   └── page.tsx                   # Trang chủ
+│   │   ├── api/                           # Route API
+│   │   │   └── route.ts                   # Định nghĩa endpoint API
+│   │   ├── (auth)/                        # Route xác thực
+│   │   │   ├── layout.tsx                 # Layout xác thực
+│   │   │   ├── login/                     # Route đăng nhập
+│   │   │   │   └── page.tsx               # Trang đăng nhập
+│   │   │   └── register/                  # Route đăng ký
+│   │   │       └── page.tsx               # Trang đăng ký
+│   │   └── dashboard/                     # Route bảng điều khiển
+│   │       ├── layout.tsx                 # Layout dashboard
+│   │       ├── page.tsx                   # Trang tổng quan
+│   │       ├── transactions/              # Quản lý giao dịch
+│   │       │   ├── page.tsx               # Danh sách giao dịch
+│   │       │   └── [id]/                  # Chi tiết giao dịch
+│   │       │       └── page.tsx           # Trang chi tiết giao dịch
+│   │       ├── wallet/                    # Quản lý ví
+│   │       │   ├── page.tsx               # Tổng quan ví
+│   │       │   └── transfer/              # Chuyển tiền
+│   │       │       └── page.tsx           # Trang chuyển tiền
+│   │       └── profile/                   # Hồ sơ người dùng
+│   │           └── page.tsx               # Trang hồ sơ
+│   │
+│   ├── assets/                            # Thư mục tài nguyên
+│   │   ├── images/                        # Hình ảnh giao diện
+│   │   └── icons/                         # Biểu tượng giao diện
+│   │
+│   ├── components/                        # Thành phần dùng chung
+│   │   ├── ui/                            # Thành phần UI (nút, form, modal...)
+│   │   ├── layout/                        # Thành phần layout (header, footer...)
+│   │   └── pages/                         # Thành phần dành riêng cho từng trang
+│   │       ├── home/                      # Thành phần trang chủ
+│   │       ├── login/                     # Thành phần trang đăng nhập
+│   │       ├── dashboard/                 # Thành phần dashboard
+│   │       ├── wallet/                    # Thành phần quản lý ví
+│   │       └── transactions/              # Thành phần quản lý giao dịch
+│   │
+│   ├── hooks/                             # Hook tùy chỉnh
+│   │   ├── useAuth.ts                     # Hook xác thực
+│   │   ├── useToast.ts                    # Hook thông báo
+│   │   ├── useTheme.ts                    # Hook quản lý giao diện
+│   │   └── useWallet.ts                   # Hook tương tác ví blockchain
+│   │
+│   ├── lib/                               # Thư viện và tiện ích
+│   │   ├── api.ts                         # Cấu hình client API
+│   │   ├── auth.ts                        # Hàm xác thực
+│   │   ├── blockchain.ts                  # Tương tác blockchain
+│   │   └── validation.ts                  # Xác thực dữ liệu form
+│   │
+│   ├── middleware.ts                      # Middleware kiểm soát truy cập
+│   │
+│   ├── services/                          # Các service giao tiếp API
+│   │   ├── authService.ts                 # Service xác thực
+│   │   ├── userService.ts                 # Service quản lý người dùng
+│   │   ├── walletService.ts               # Service quản lý ví
+│   │   └── transactionService.ts          # Service giao dịch
+│   │
+│   ├── stores/                            # Quản lý trạng thái
+│   │   └── redux/                         # Cấu hình Redux Toolkit
+│   │       ├── store.ts                   # Cấu hình store
+│   │       ├── hooks.ts                   # Hook Redux tùy chỉnh
+│   │       └── slices/                    # Redux slices
+│   │           ├── authSlice.ts           # Trạng thái xác thực
+│   │           ├── userSlice.ts           # Trạng thái người dùng
+│   │           ├── walletSlice.ts         # Trạng thái ví
+│   │           └── transactionSlice.ts    # Trạng thái giao dịch
+│   │
+│   ├── styles/                            # Định dạng giao diện
+│   │   ├── globals.css                    # CSS toàn cục
+│   │   └── themes/                        # Các chủ đề
+│   │       ├── dark.css                   # Chế độ tối
+│   │       └── light.css                  # Chế độ sáng
+│   │
+│   ├── types/                             # Định nghĩa kiểu TypeScript
+│   │   ├── index.ts                       # Export tất cả types
+│   │   ├── auth.ts                        # Type xác thực
+│   │   ├── user.ts                        # Type người dùng
+│   │   ├── wallet.ts                      # Type ví
+│   │   └── transaction.ts                 # Type giao dịch
+│   │
+│   └── utils/                             # Hàm tiện ích
+│       ├── format.ts                      # Định dạng dữ liệu (ngày, tiền tệ)
+│       ├── crypto.ts                      # Mã hóa, băm
+│       └── validation.ts                  # Kiểm tra dữ liệu
 │
-├── public # Thư mục chứa file tĩnh (favicon, manifest, ...)
-│ ├── favicon.ico
-│ ├── robots.txt
-│ └── images # Hình ảnh tĩnh, không cần tối ưu
-│ ├── logo.png # Logo công ty
-│ └── banner.jpg # Banner tĩnh
+├── public/                                # File tĩnh
+│   ├── favicon.ico                        # Biểu tượng trang
+│   ├── robots.txt                         # File robots
+│   └── images/                            # Hình ảnh tĩnh
+│       ├── logo.png                       # Logo ứng dụng
+│       └── background.jpg                 # Hình nền
 │
-├── tests # Thư mục chứa file kiểm thử (Unit Test, E2E Test)
-│ ├── unit # Kiểm thử đơn vị (Jest, Testing Library)
-│ │ ├── components # Kiểm thử cho components
-│ │ │ ├── Button.test.tsx
-│ │ │ └── Modal.test.tsx
-│ │ ├── hooks # Kiểm thử cho custom hooks
-│ │ │ └── useAuth.test.ts
-│ │ ├── lib # Kiểm thử cho hàm tiện ích
-│ │ │ └── formatDate.test.ts
-│ │ └── pages # Kiểm thử cho các trang
-│ │ ├── Home.test.tsx
-│ │ └── Login.test.tsx
-│ └── e2e # Kiểm thử End-to-End (Playwright, Cypress)
-│ ├── tests # Các trường hợp kiểm thử E2E
-│ │ ├── login.spec.ts # Kiểm thử luồng đăng nhập
-│ │ ├── register.spec.ts # Kiểm thử luồng đăng ký
-│ │ └── navigation.spec.ts # Kiểm thử luồng điều hướng
-│ ├── fixtures # Dữ liệu kiểm thử và phản hồi giả
-│ │ └── user.json
-│ ├── support # Lệnh tùy chỉnh và thiết lập
-│ │ └── commands.ts
-│ └── cypress.config.ts # Cấu hình Cypress
+├── .env.local                             # Biến môi trường local
+├── .env.development                       # Biến môi trường development
+├── .env.production                        # Biến môi trường production
 │
-├── .gitignore # File cấu hình Git Ignore
-├── package.json # File quản lý phụ thuộc
-├── next.config.js # Cấu hình Next.js
-├── postcss.config.js # Cấu hình PostCSS (nếu dùng TailwindCSS)
-├── tailwind.config.js # Cấu hình TailwindCSS
-├── tsconfig.json # Cấu hình TypeScript
-├── README.md # File mô tả dự án
-└── react-query-config.ts # File cấu hình React Query
+├── .gitignore                             # Cấu hình Git Ignore
+├── package.json                           # Phụ thuộc và scripts
+├── next.config.js                         # Cấu hình Next.js
+├── postcss.config.js                      # Cấu hình PostCSS
+├── tailwind.config.js                     # Cấu hình TailwindCSS
+├── tsconfig.json                          # Cấu hình TypeScript
+└── README.md                              # Tài liệu dự án

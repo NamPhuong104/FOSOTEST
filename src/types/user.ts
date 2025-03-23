@@ -2,14 +2,17 @@
 export interface User {
   id: string
   username: string
+  name: string
   email: string
-  name?: string
-  avatar?: string
+  roles?: string[]
+  avatarUrl?: string
 }
 
 // Định nghĩa interface cho state trong Redux
 export interface UserState {
   user: User | null
+  users: User[] // Khởi tạo là mảng rỗng, không phải null
+  selectedUser: User | null
   loading: boolean
   error: string | null
 }

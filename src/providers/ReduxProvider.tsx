@@ -2,7 +2,7 @@
 
 import { AuthProvider } from '@/hooks/useAuth'
 import { Provider } from 'react-redux'
-import { store } from '@/stores/store'
+import { store } from '@/stores/redux/store'
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
   return (

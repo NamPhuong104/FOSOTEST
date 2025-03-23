@@ -6,12 +6,18 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     user: userReducer
+
+    // Thêm các reducers khác nếu có
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false // Tùy chọn: tắt kiểm tra non-serializable nếu cần
+    }),
   devTools: process.env.NODE_ENV !== 'production'
 })
 
+// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-
 export type AppDispatch = typeof store.dispatch
 
 /* EXAMPLE */
@@ -21,8 +27,8 @@ export type AppDispatch = typeof store.dispatch
 "use client";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '@/stores/slices/authSlice';
-import type { RootState } from '@/stores/store';
+import { login, logout } from '@/stores/redux/slices/authSlice';
+import type { RootState } from '@/stores/redux/store';
 
 function LoginComponent() {
   const dispatch = useDispatch();

@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server'
 
 // Định nghĩa các kiểu lỗi API
-export type ApiErrorCode = 'UNAUTHORIZED' | 'FORBIDDEN' | 'NOT_FOUND' | 'BAD_REQUEST' | 'SERVER_ERROR'
+export type ApiErrorCode =
+  | 'UNAUTHORIZED'
+  | 'FORBIDDEN'
+  | 'NOT_FOUND'
+  | 'BAD_REQUEST'
+  | 'SERVER_ERROR'
 
 // Định nghĩa kiểu dữ liệu cho lỗi validation
 export type ValidationErrors = {
@@ -81,5 +86,17 @@ export function success<T>(data: T, message = 'Success') {
       data
     },
     { status: 200 }
+  )
+}
+
+export function createApiResponse<T>(data: T, success = true, message = '', status = 200) {
+  return NextResponse.json(
+    {
+      data,
+      success,
+      message,
+      status
+    },
+    { status }
   )
 }

@@ -9,7 +9,8 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Chuẩn hóa pathname
-  const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
+  const normalizedPath =
+    pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
 
   // Kiểm tra route hiện tại
   const isProtectedRoute = PROTECTED_ROUTES.some(
@@ -38,5 +39,12 @@ export function middleware(request: NextRequest) {
 
 // Cấu hình matcher chỉ cho protected routes
 export const config = {
-  matcher: ['/profile', '/profile/:path*', '/settings', '/settings/:path*', '/dashboard', '/dashboard/:path*']
+  matcher: [
+    '/profile',
+    '/profile/:path*',
+    '/settings',
+    '/settings/:path*',
+    '/dashboard',
+    '/dashboard/:path*'
+  ]
 }
