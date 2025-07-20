@@ -2,12 +2,16 @@
 
 import Link from 'next/link'
 
-interface GlobalErrorProps {
-  error: any
-  reset: () => void
+interface ErrorType {
+  status?: number
+  message?: string
 }
 
-export default function GlobalError({ error, reset }: GlobalErrorProps) {
+interface GlobalErrorProps {
+  error: ErrorType
+}
+
+export default function GlobalError({ error }: GlobalErrorProps) {
   const status = error?.status ?? 500
 
   let title = 'Lỗi máy chủ'

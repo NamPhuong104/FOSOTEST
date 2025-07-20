@@ -2,17 +2,21 @@
 const nextConfig = {
   experimental: {
     staleTimes: {
-      dynamic: 30,
-    },
+      dynamic: 30
+    }
   },
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
       },
-    ],
-  },
-};
+      {
+        protocol: 'https',
+        hostname: 'github.com'
+      }
+    ]
+  }
+}
 
-export default nextConfig;
+export default nextConfig

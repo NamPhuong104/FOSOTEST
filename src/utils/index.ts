@@ -26,6 +26,13 @@ export function formatNumber(n: number): string {
   }).format(n)
 }
 
+export function formatCurrency(n: number): string {
+  return Intl.NumberFormat('en-US', {
+    currency: 'USD',
+    maximumFractionDigits: 9
+  }).format(n)
+}
+
 export function slugify(input: string): string {
   return input
     .toLowerCase()
@@ -35,26 +42,26 @@ export function slugify(input: string): string {
 
 // Interface cho performance metric
 export interface PerformanceMetric {
-  name: string;
-  value: number;
-  unit: string;
-  timestamp: number;
-  route?: string;
-  context?: Record<string, any>;
+  name: string
+  value: number
+  unit: string
+  timestamp: number
+  route?: string
+  context?: Record<string, any>
 }
 
 // Log performance metric
 export function logPerformanceMetric(
-  name: string, 
-  value: number, 
-  options: { 
-    unit?: string; 
-    route?: string;
-    context?: Record<string, any> 
+  name: string,
+  value: number,
+  options: {
+    unit?: string
+    route?: string
+    context?: Record<string, any>
   } = {}
 ): void {
   const { unit = 'ms', route, context = {} } = options
-  
+
   const metric: PerformanceMetric = {
     name,
     value,
@@ -63,34 +70,33 @@ export function logPerformanceMetric(
     route,
     context
   }
-  
+
   // Log trong development
   if (process.env.NODE_ENV === 'development') {
     console.log(
-      `Metric [${name}]${route ? ` on ${route}` : ''}: ` +
-      `${value.toFixed(2)}${unit}`, 
+      `Metric [${name}]${route ? ` on ${route}` : ''}: ` + `${value.toFixed(2)}${unit}`,
       context
     )
   }
-  
+
   // Lưu vào localStorage để phân tích sau (giới hạn 1000 entries)
   if (typeof window !== 'undefined') {
     try {
       const storedMetrics = JSON.parse(
         localStorage.getItem('__performance_metrics__') || '[]'
       ) as PerformanceMetric[]
-      
+
       storedMetrics.push(metric)
-      
+
       // Giữ chỉ 1000 metrics gần nhất
       const limitedMetrics = storedMetrics.slice(-1000)
-      
+
       localStorage.setItem('__performance_metrics__', JSON.stringify(limitedMetrics))
     } catch (e) {
       console.error('Failed to store performance metric:', e)
     }
   }
-  
+
   // TODO: Gửi đến monitoring service của bạn (Sentry, Datadog, etc.)
   // sendToMonitoringService(metric);
 }
