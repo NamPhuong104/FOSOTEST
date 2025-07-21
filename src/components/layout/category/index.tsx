@@ -6,7 +6,7 @@ const Category = () => {
     <div className='flex flex-row items-center justify-between mb-3'>
       <div className='flex gap-2'>
         <CategoryMenu />
-        <ul className='flex gap-2 items-center justify-between'>
+        <ul className='flex gap-2 items-center justify-between hover:cursor-pointer'>
           {headerData.rightContent.map((item, i) => (
             <li className='font-medium' key={i}>
               {item.title}

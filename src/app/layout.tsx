@@ -25,10 +25,10 @@ const epilogueSemiBold = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Next15 Starter',
-    default: 'Next15 Starter'
+    template: '%s | Foso',
+    default: 'Foso'
   },
-  description: 'Next15 Starter'
+  description: 'Foso'
 }
 
 export default function RootLayout({
