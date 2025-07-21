@@ -8,8 +8,9 @@ const Category = () => {
         <CategoryMenu />
         <ul className='flex gap-2 items-center justify-between hover:cursor-pointer'>
           {headerData.rightContent.map((item, i) => (
-            <li className='font-medium' key={i}>
+            <li className='font-medium relative group hover:text-gray-500' key={i}>
               {item.title}
+              <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full'></span>
             </li>
           ))}
         </ul>

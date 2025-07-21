@@ -69,10 +69,17 @@ const FooterTitle = ({ title }: { title: string }) => {
 
 const FooterSpan = ({ title, content }: { title?: string; content?: string }) => {
   return title && content ? (
-    <span className='flex gap-1 text-[#647482]'>
-      {title}: <p className='text-[#647482] font-medium'>{content}</p>
+    <span className='flex gap-1 text-[#647482] hover:cursor-pointer'>
+      {title}:
+      <p className='text-[#647482] font-medium relative group'>
+        {content}
+        <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full'></span>
+      </p>
     </span>
   ) : content ? (
-    <p className='text-[#647482] font-medium'>{content}</p>
+    <p className='text-[#647482] font-medium hover:cursor-pointer relative group'>
+      {content}
+      <span className='absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full'></span>
+    </p>
   ) : null
 }
