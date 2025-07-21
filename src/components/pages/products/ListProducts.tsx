@@ -70,7 +70,7 @@ const ListProducts = () => {
       </div>
       <div className='w-full p-1 grid grid-cols-4 min-[1920px]:grid-cols-5 gap-2'>
         {visibleProducts.map((product, i) => (
-          <Card key={i} className='w-52 h-auto p-4'>
+          <Card key={i} className='w-52 h-auto p-4 hover:cursor-pointer hover:bg-blue-100'>
             <CardItem {...product} />
           </Card>
         ))}
@@ -131,7 +131,7 @@ const ComboboxFilter = () => {
           <ChevronsUpDown className='opacity-50' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-[170px] p-0 rounded-[8px]'>
+      <PopoverContent className='w-[170px] p-0 rounded-[8px] bg-white hover:cursor-pointer'>
         <Command>
           <CommandList>
             <CommandGroup>

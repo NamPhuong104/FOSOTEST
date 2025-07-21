@@ -30,9 +30,9 @@ const Section1 = () => {
         >
           <CarouselContent>
             {Array.from({ length: 30 }).map((_, index) => (
-              <CarouselItem key={index} className='basis-1/3 2xl:basis-1/5 min-[1920px]:basis-1/6'>
+              <CarouselItem key={index} className='basis-1/3 2xl:basis-1/5 min-[1920px]:basis-1/6 '>
                 <div className='p-1'>
-                  <Card className='w-52 h-auto p-4'>
+                  <Card className='w-52 h-auto p-4 hover:cursor-pointer hover:bg-blue-100'>
                     <CardItem
                       discount={100}
                       oldPrice={300000}
